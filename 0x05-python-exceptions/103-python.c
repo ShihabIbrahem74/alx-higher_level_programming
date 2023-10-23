@@ -4,9 +4,28 @@
 #include <floatobject.h>
 
 /**
- * print_python_bytes - for alx task
- * @p: an argument
- * return: always zero
+ * print_python_float - prints info about python float
+ * @p: address of pyobject struct
+ */
+void print_python_float(PyObject *p)
+{
+    double d;
+
+	setbuf(stdout, NULL);
+	printf("[.] float object info\n");
+	if (strcmp(p->ob_type->tp_name, "float"))
+	{
+		printf("  [ERROR] Invalid Float Object\n");
+		return;
+	}
+    d = ((PyFloatObject *)p)->ob_fval;
+	printf("  value: %s\n",
+        PyOS_double_to_string(d, 'r', 0, Py_DTSF_ADD_DOT_0, NULL));
+}
+
+/**
+ * print_python_bytes - prints info about python bytes
+ * @p: address of pyobject struct
  */
 void print_python_bytes(PyObject *p)
 {
@@ -30,10 +49,10 @@ void print_python_bytes(PyObject *p)
 		printf("%02hhx%s", str[i], i + 1 < len ? " " : "");
 	printf("\n");
 }
+
 /**
- * print_python_list - for alx task
- * @p: an argument
- * returun: always zero
+ * print_python_list - prints info about python lists
+ * @p: address of pyobject struct
  */
 void print_python_list(PyObject *p)
 {
@@ -58,24 +77,4 @@ void print_python_list(PyObject *p)
 			print_python_float(((PyListObject *)p)->ob_item[i]);
 
 	}
-}
-/**
- * print_python_float - for alx task
- * @p: an argument
- * return: always zero
- */
-void print_python_float(PyObject *p)
-{
-	double doub;
-
-	setbuf(stdout, NULL);
-	printf("[.] float object info\n");
-	if (strcmp(p->ob_type->tp_name, "float"))
-	{
-		printf("  [ERROR] Invalid Float Object\n");
-		return;
-	}
-	doub = ((PyFloatObject *)p)->ob_fval;
-	printf("  value: %s\n",
-		PyOS_double_to_string(doub, 'r', 0, Py_DTSF_ADD_DOT_0, NULL));
 }
