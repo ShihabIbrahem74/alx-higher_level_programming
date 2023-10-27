@@ -11,7 +11,7 @@ class Square:
             size (int, optional): value of size. Defaults to 0.
 
         Raises:
-            TypeError: value must be integer 
+            TypeError: value must be integer
             ValueError: value must be larger than zero
         """
         if not isinstance(size, int):
