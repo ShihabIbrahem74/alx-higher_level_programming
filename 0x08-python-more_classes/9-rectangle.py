@@ -1,24 +1,21 @@
 #!/usr/bin/python3
-'''Module for Rectangle class.'''
+"""Reactangle Module"""
 
 
 class Rectangle:
-    '''This class defines a simple Rectangle.'''
-
+    """creates a Reactangle"""
     number_of_instances = 0
-    '''int: The number of active instances.'''
-
-    print_symbol = '#'
-    '''type: Print symbol, can be any type.'''
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        '''Constructor.
+        """create instances for a rectangle
+
         Args:
-            width: The width of rectangle.
-            height: The height of rectangle.
-        '''
-        self.width = width
+            width (int, optional): width. Defaults to 0.
+            height (int, optional): hight. Defaults to 0.
+        """
         self.height = height
+        self.width = width
         Rectangle.number_of_instances += 1
 
     @property
