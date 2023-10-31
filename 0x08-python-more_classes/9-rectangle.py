@@ -8,11 +8,12 @@ class Rectangle:
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        '''Constructor.
+        """create instances for a rectangle
+
         Args:
-            width: The width of rectangle.
-            height: The height of rectangle.
-        '''
+            width (int, optional): width. Defaults to 0.
+            height (int, optional): hight. Defaults to 0.
+        """
         self.width = width
         self.height = height
         Rectangle.number_of_instances += 1
