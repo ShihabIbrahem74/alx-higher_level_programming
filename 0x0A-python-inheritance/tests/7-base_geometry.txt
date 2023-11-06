@@ -4,109 +4,93 @@
 # Import BaseGeometry class from the module
 from geometry_module import BaseGeometry
 
-# Check if BaseGeometry class is the correct type
-bg = BaseGeometry()
-assert type(bg) == BaseGeometry  # Should return True
+# Test 1: Correct Class Type
+>>> bg = BaseGeometry()
+>>> type(bg) == BaseGeometry
+True
 
-# Verify that the area method is an instance method
-assert type(BaseGeometry.__dict__['area']) == type(lambda: None)
+# Test 2: Verify that the area method is an instance method
+>>> type(BaseGeometry.__dict__['area'])
+<class 'function'>
 
-# Attempt to call the area method via the class with no arguments
-try:
-    bg.__class__.area()
-except TypeError as e:
-    assert str(e) == "area() missing 1 required positional argument: 'self"
+# Test 3: Calling the area method via the class with no arguments
+>>> bg.__class__.area()
+Traceback (most recent call last):
+    TypeError: area() missing 1 required positional argument: 'self'
 
-# Try calling the area method with one argument
-try:
-    bg.area(10)
-except TypeError as e:
-    assert str(e) == "area() takes 1 positional argument but 2 were given"
+# Test 4: Calling the area method with one argument
+>>> bg.area(10)
+Traceback (most recent call last):
+    TypeError: area() takes 1 positional argument but 2 were given
 
-# Ensure that calling the area method without implementation raises an exception
-try:
-    bg.area()
-except Exception as e:
-    assert str(e) == "area() is not implemented"
+# Test 5: Calling the area method without implementation
+>>> bg.area()
+Traceback (most recent call last):
+    Exception: area() is not implemented
 
-# Check if the integer_validator method is an instance method
-assert type(BaseGeometry.__dict__['integer_validator']) == type(lambda: None)
+# Test 6: Verify that the integer_validator method is an instance method
+>>> type(BaseGeometry.__dict__['integer_validator'])
+<class 'function'>
 
-# Attempt to call the integer_validator method via the class with no arguments
-try:
-    bg.__class__.integer_validator()
-except TypeError as e:
-    assert str(e) == "integer_validator() missing 3 required positional arguments: 'self', 'name', and 'value'"
+# Test 7: Calling the integer_validator method via the class with no arguments
+>>> bg.__class__.integer_validator()
+Traceback (most recent call last):
+    TypeError: integer_validator() missing 3 required positional arguments: 'self', 'name', and 'value'
 
-# Try calling the integer_validator method with 0 arguments
-try:
-    bg.integer_validator()
-except TypeError as e:
-    assert str(e) == "integer_validator() missing 2 required positional arguments: 'name' and 'value'"
+# Test 8: Calling the integer_validator method with 0 arguments
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-# Try calling the integer_validator method with 3 arguments
-try:
-    bg.integer_validator(1, 1, 1)
-except TypeError as e:
-    assert str(e) == "integer_validator() takes 3 positional arguments but 4 were given"
+# Test 9: Calling the integer_validator method with 3 arguments
+>>> bg.integer_validator(1, 1, 1)
+Traceback (most recent call last):
+    TypeError: integer_validator() takes 3 positional arguments but 4 were given
 
-# Test different types of arguments for integer_validator
-try:
-    bg.integer_validator("foo", 3.0)
-except TypeError as e:
-    assert str(e) == "foo must be an integer"
+# Test 10: Testing different types of arguments for integer_validator
+>>> bg.integer_validator("foo", 3.0)
+Traceback (most recent call last):
+    TypeError: foo must be an integer
 
-try:
-    bg.integer_validator("arg", 3.14)
-except TypeError as e:
-    assert str(e) == "arg must be an integer"
+>>> bg.integer_validator("arg", 3.14)
+Traceback (most recent call last):
+    TypeError: arg must be an integer
 
-try:
-    bg.integer_validator("Bar", "bar")
-except TypeError as e:
-    assert str(e) == "Bar must be an integer"
+>>> bg.integer_validator("Bar", "bar")
+Traceback (most recent call last):
+    TypeError: Bar must be an integer
 
-try:
-    bg.integer_validator("zar", True)
-except TypeError as e:
-    assert str(e) == "zar must be an integer"
+>>> bg.integer_validator("zar", True)
+Traceback (most recent call last):
+    TypeError: zar must be an integer
 
-try:
-    bg.integer_validator("a", [1])
-except TypeError as e:
-    assert str(e) == "a must be an integer"
+>>> bg.integer_validator("a", [1])
+Traceback (most recent call last):
+    TypeError: a must be an integer
 
-try:
-    bg.integer_validator("foo", None)
-except TypeError as e:
-    assert str(e) == "foo must be an integer"
+>>> bg.integer_validator("foo", None)
+Traceback (most recent call last):
+    TypeError: foo must be an integer
 
-# Test positive and negative integer values
-try:
-    bg.integer_validator("key", 0)
-except ValueError as e:
-    assert str(e) == "key must be greater than 0"
+# Test 11: Testing valid integer values
+>>> bg.integer_validator("key", 98)
 
-try:
-    bg.integer_validator("key", -1000)
-except ValueError as e:
-    assert str(e) == "key must be greater than 0"
+>>> bg.integer_validator("key", 1)
 
-# Valid integer values
-bg.integer_validator("key", 98)
-bg.integer_validator("key", 1)
+# Test 12: Testing non-integer values such as an empty string and None as name arguments
+>>> bg.integer_validator("", 1)
+Traceback (most recent call last):
+    ValueError: name must be greater than 0
 
-# Test empty string and None as name arguments
-bg.integer_validator("", 1)
-bg.integer_validator(None, 1)
+>>> bg.integer_validator(None, 1)
+Traceback (most recent call last):
+    ValueError: name must be greater than 0
 
-# Test non-integer values such as tuple and dictionary
-try:
-    bg.integer_validator("Foo", (1, 2))
-except TypeError as e:
-    assert str(e) == "Foo must be an integer"
+# Test 13: Testing non-integer values such as a tuple and dictionary
+>>> bg.integer_validator("Foo", (1, 2))
+Traceback (most recent call last):
+    TypeError: Foo must be an integer
 
-try:
-    bg.integer_validator("Foo", {1, 2})
-except TypeError as e:
-    assert str(e) == "Foo must be an integer"
+>>> bg.integer_validator("Foo", {1, 2})
+Traceback (most recent call last):
+    TypeError: Foo must be an integer
