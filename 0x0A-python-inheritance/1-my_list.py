@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """module for alx task"""
 
+
 class MyList(list):
     """Mylist child class
 
@@ -12,5 +13,3 @@ class MyList(list):
         """method for alx task
         """
         print(sorted(self))
-    
-    
