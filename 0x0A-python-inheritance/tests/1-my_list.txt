@@ -4,16 +4,16 @@ Using Myclass
 ---------------------
 
 Import function from module:
-    >>> MyList = __import__('1-my_list').MyList
+    >>> my_LIST = __import__('1-my_list').MyList
 
 Correct Class Type test:
-    >>> list = MyList()
-    >>> type(list) == MyList
+    >>> my_LIST = MyList()
+    >>> type(my_LIST) == MyList
     True
 
 Correct Instance test:
-    >>> list = MyList()
-    >>> isinstance(list, list)
+    >>> my_LIST = MyList()
+    >>> isinstance(my_LIST, list)
     True
 
 print_sorted method is an instance method:
