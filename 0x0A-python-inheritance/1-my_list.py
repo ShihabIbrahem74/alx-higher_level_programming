@@ -7,7 +7,7 @@ class MyList(list):
     Args:
         list (list): parent class
     """
-    
+
     def print_sorted(self):
         """method for alx task
         """
