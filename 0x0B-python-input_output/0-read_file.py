@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """module for alx task"""
+
+
 def read_file(filename=""):
     """ Reads a text file (UTF8) and prints it to stdout:
 
@@ -7,4 +9,5 @@ def read_file(filename=""):
         filename (str): file name. Defaults to "".
     """
     with open(filename, "r") as f:
-        print(f.read())
+        for line in f:
+            print(line, end="")
